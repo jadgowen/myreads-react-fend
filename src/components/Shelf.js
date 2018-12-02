@@ -9,12 +9,14 @@ class Shelf extends Component {
         <h2 className="bookshelf-title">{shelf.title}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
+            {/*If books exist, return books*/}
             {this.props.books &&
             this.props.books
               .map(book =>
               <Book
                 key = {book.id}
                 {...book}
+                moveShelf={this.props.moveShelf}
               />
             )}
           </ol>
