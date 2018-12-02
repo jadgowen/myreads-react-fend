@@ -6,22 +6,33 @@ import Home from './views/Home'
 import { Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
+  state = {
+    books: []
+  }
+
+  getBooks() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
+  }
+
+  componentDidMount() {
+    this.getBooks()
+  }
+
   render() {
     return (
       <div className="app">
-        <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
             <Route exact path={"/"} render={() => (
-              <Home/>
+              <Home
+                books={this.state.books}
+              />
             )}/>
             <Route exact path={"/search"} render={() => (
-              <Search/>
+              <Search
+                books={this.state.books}
+              />
             )}/>
-
-          </div>
-        )}
       </div>
     )
   }
