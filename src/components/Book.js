@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 
 class Book extends Component {
-
   render() {
-    const book = this.props
-    const newBook = new updateBook(book.id)
+    //Convert ID prop to object for BooksAPI update function
+    const bookID = {id : this.props.id}
     return(
       <li>
         <div className="book">
@@ -15,15 +14,16 @@ class Book extends Component {
               style={{
                 width: 128,
                 height: 193,
-                backgroundImage: book.imageLinks ? `url("${book.imageLinks.thumbnail}")` : ""
+                backgroundImage: this.props.imageLinks ? `url("${this.props.imageLinks.thumbnail}")` : ""
               }}
             >
             </div>
             <div className="book-shelf-changer">
               {/*Update book to new shelf, default to none if no shelf prop exists*/}
               <select
-                onChange={(e) => this.props.moveShelf(newBook, e.target.value)}
-                defaultValue={book.shelf ? book.shelf : 'none'}
+                id={this.props.id}
+                onChange={(e) => this.props.moveShelf(bookID, e.target.value)}
+                defaultValue={this.props.shelf ? this.props.shelf : 'none'}
               >
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
@@ -33,18 +33,14 @@ class Book extends Component {
               </select>
             </div>
           </div>
-          <div className="book-title">{book.title}</div>
+          <div className="book-title">{this.props.title}</div>
           {/*Return multiple authors on new lines, inspired by https://stackoverflow.com/questions/34034038/how-to-render-react-components-by-using-map-and-join*/}
-          <div className="book-authors">{book.authors ? book.authors.map(author => <div key={author}>{author}</div>) : "No Author"}</div>
+          <div className="book-authors">
+            {this.props.authors ? this.props.authors.map(author => <div key={author}>{author}</div>) : "No Author"}
+          </div>
         </div>
       </li>
     )
-  }
-}
-
-class updateBook {
-  constructor(id){
-    this.id = id;
   }
 }
 

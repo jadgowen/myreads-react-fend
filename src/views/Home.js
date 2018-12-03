@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Shelf from '../components/Shelf'
 
-
-
 class Home extends Component {
   render() {
     return(

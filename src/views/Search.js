@@ -19,11 +19,20 @@ class Search extends Component {
   }
 
   showResults = (query) => {
-    if (query) {
+    //Returns results if query is not empty
+    if (query !== "") {
       //Uses search function from BooksAPI to set values to state of queryResults array
       BooksAPI.search(query).then((queryResults) => {
+        //If query has an error, returns empty array
+        if(queryResults.error) {
+          this.setState({ queryResults: [] })
+        } else {
         this.setState({ queryResults })
+        }
       })
+    //Default state for query results
+    } else {
+      this.setState({ queryResults: [] })
     }
   }
 
@@ -51,14 +60,15 @@ class Search extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
+            {/*Returns books based on query results, passes moveShelf function to Book component*/}
             {this.state.queryResults.map(queryResult =>
-
-            <Book
-              key={queryResult.id}
-              {...queryResult}
-              moveShelf={this.props.moveShelf}
-            />
+              <Book
+                key={queryResult.id}
+                {...queryResult}
+                moveShelf={this.props.moveShelf}
+              />
             )}
+            {this.state.queryResults.length === 0 && this.state.query !== "" && (<h1>No Results Found</h1>)}
           </ol>
         </div>
       </div>
