@@ -68,6 +68,7 @@ class Search extends Component {
                 moveShelf={this.props.moveShelf}
               />
             )}
+            {/*If query is not blank and has no results, shows No Results Found*/}
             {this.state.queryResults.length === 0 && this.state.query !== "" && (<h1>No Results Found</h1>)}
           </ol>
         </div>
