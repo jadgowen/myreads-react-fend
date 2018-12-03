@@ -4,9 +4,9 @@ This is my submission for the Udacity FEND nanodegree project titled "MyReads".
 
 ## Table of Contents
 
-* [Getting Started](#gettingstarted)
-* [Using The App](#usingtheapp)
-* [Search Terms](#searchterms)
+* [Getting Started](#getting_started)
+* [Using The App](#using_the_app)
+* [Search Terms](#search_terms)
 * [Dependencies](#dependencies)
 
 ## Getting Started
