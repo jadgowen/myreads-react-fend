@@ -64,6 +64,7 @@ class Search extends Component {
             {this.state.queryResults.map(queryResult =>
               <Book
                 key={queryResult.id}
+                onShelf={this.props.books.filter(shelf => shelf.id === queryResult.id)}
                 {...queryResult}
                 moveShelf={this.props.moveShelf}
               />

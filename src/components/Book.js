@@ -23,7 +23,7 @@ class Book extends Component {
               <select
                 id={this.props.id}
                 onChange={(e) => this.props.moveShelf(bookID, e.target.value)}
-                defaultValue={this.props.shelf ? this.props.shelf : 'none'}
+                defaultValue={this.props.onShelf.length > 0 ? this.props.onShelf[0].shelf : 'none'}
               >
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
@@ -37,6 +37,9 @@ class Book extends Component {
           {/*Return multiple authors on new lines, inspired by https://stackoverflow.com/questions/34034038/how-to-render-react-components-by-using-map-and-join*/}
           <div className="book-authors">
             {this.props.authors ? this.props.authors.map(author => <div key={author}>{author}</div>) : "No Author"}
+          </div>
+          <div className="book-authors">
+
           </div>
         </div>
       </li>

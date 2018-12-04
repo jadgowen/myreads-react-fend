@@ -16,6 +16,7 @@ class Shelf extends Component {
                 key = {book.id}
                 {...book}
                 moveShelf={this.props.moveShelf}
+                onShelf={this.props.books.filter(shelf => shelf.id === book.id)}
               />
             )}
           </ol>
